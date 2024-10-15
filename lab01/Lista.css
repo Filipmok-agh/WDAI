@@ -1,0 +1,25 @@
+table
+{
+    width: 100%;
+    border: 3px solid black;
+    border-collapse: collapse;
+}
+th
+{
+    border-collapse: collapse;
+    padding: 8px;
+    border: 3px solid black;
+    justify-content: center;
+    font-size: 50px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+td,tr
+{
+    border-collapse: collapse;
+    padding: 8px;
+    border: 3px solid black;
+    justify-content: center;
+    font-size: 50px;
+    text-align: center;
+}
