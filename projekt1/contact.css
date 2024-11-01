@@ -194,3 +194,72 @@ h4
     margin: 0;
     padding-bottom: 2vw;
 }
+
+@media (max-width: 800px) 
+{
+    form {
+        background-color: white;
+        padding: 2vw;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        width: 40%;
+        height: 100%;
+    }
+    
+    form label
+    {
+        font-family: "Inter", sans-serif;
+    
+        font-size: 2vw;
+        
+    }
+    #email
+    {
+        font-family: "Inter", sans-serif;
+        width: 50%;
+        font-size: 1.4vw;
+        padding: 0;
+    }
+    #temat
+    {
+        font-family: "Inter", sans-serif;
+        width: 30%;
+        height: 15%;
+        padding: 0;
+    
+    }
+    #wiadomosc
+    {
+        font-family: "Inter", sans-serif;
+        font-size: 1.4vw;
+        width: 27vw;
+        height: 3vw;
+        padding: 0;
+    }
+    input::placeholder {
+        color: rgba(0, 0, 0, 0.2); 
+    }
+    textarea::placeholder {
+        color: rgba(0, 0, 0, 0.2); 
+        opacity: 1; 
+    }
+    form input[type="submit"] {
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        width: 30%;
+        height: 20%;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        font-size: 2vw;
+        font-family: "Inter", sans-serif;
+    
+    }
+    
+    form input[type="submit"]:hover {
+        background-color: gray;
+    
+    }
+
+}
