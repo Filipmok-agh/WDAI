@@ -33,24 +33,24 @@
 </nav>
     <h2>Kontakt</h2>
     <div class="main">
-    <form action="/submit" method="post">
-        <label for="email" class="email">E-Mail:</label>
-        <input type="text" name="email" placeholder="E-Mail" required id="email">
-        <br><br>
-        <label for="temat">Temat wiadomości:</label>
-        <select id="temat" name="temat" required>
-            <option value="">Wybierz temat</option>
-            <option value="opcja1">Praca</option>
-            <option value="opcja2">Skarga</option>
-            <option value="opcja3">Inne</option>
-        </select>
-        <br><br>
-        <label for="wiadomosc">Wiadomość:</label>
-        <textarea id="wiadomosc" name="wiadomosc" placeholder="Wiadomość" required></textarea>
-        <br><br>
-        <input type="submit" value="Wyślij">
-    </form>
-</div>
+        <form class="form" id="contactForm">
+            <label for="email" class="email">E-Mail:</label>
+            <input type="text"  name="email" placeholder="Wprowadź E-mail" id="email"  required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="podaj prawidłowy E-Mail">
+            <br><br>
+            <label for="temat">Temat wiadomości:</label>
+            <select id="temat" required name="temat">
+                <option value="">Wybierz temat</option>
+                <option value="opcja1">Praca</option>
+                <option value="opcja2">Skarga</option>
+                <option value="opcja3">Inne</option>
+            </select>
+            <br><br>
+            <label for="wiadomosc">Wiadomość:</label>
+            <textarea id="wiadomosc" required name="wiadomosc" placeholder="Wpisz wiadomość"></textarea>
+            <br><br>
+            <input type="submit" value="Wyślij">
+        </form>
+    </div>
     <footer>
         <hr>
         <h4>Mokrzycki Filip</h4>

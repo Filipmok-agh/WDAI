@@ -3,6 +3,7 @@ body
     background-color: rgb(213, 237, 159);
     padding: 0;
 }
+
 html
 {
     width: 100%;
@@ -29,7 +30,7 @@ header
 h1
 {
     padding-top: 0.75vw;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Inter", sans-serif;
     font-size: 3.5vw;
     margin: 0;
 }
@@ -62,7 +63,7 @@ h1
 .navbar a 
 {
     color: black;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Inter", sans-serif;
     position: relative;
     font-size: 2vw;
     border: 5px;
@@ -99,6 +100,8 @@ h1
 
 h2
 {
+    font-family: "Inter", sans-serif;
+
     margin-top: 5vw;
     text-align: center;
     margin: 1vw;
@@ -121,21 +124,36 @@ form {
 
 form label
 {
+    font-family: "Inter", sans-serif;
+
     font-size: 2vw;
 }
 #email
 {
+    font-family: "Inter", sans-serif;
     width: 27vw;
     font-size: 1.4vw;
 }
 #temat
 {
+    font-family: "Inter", sans-serif;
     width: 9vw;
+    height: 1.8vw;
+
 }
 #wiadomosc
 {
+    font-family: "Inter", sans-serif;
+    font-size: 1.4vw;
     width: 27vw;
     height: 5vw;
+}
+input::placeholder {
+    color: rgba(0, 0, 0, 0.2); 
+}
+textarea::placeholder {
+    color: rgba(0, 0, 0, 0.2); 
+    opacity: 1; 
 }
 form input[type="submit"] {
     background-color: red;
@@ -147,10 +165,13 @@ form input[type="submit"] {
     cursor: pointer;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     font-size: 2vw;
+    font-family: "Inter", sans-serif;
+
 }
 
 form input[type="submit"]:hover {
     background-color: gray;
+
 }
 footer
 {
@@ -165,6 +186,8 @@ hr
 }
 h4
 {
+    font-family: "Inter", sans-serif;
+
     font-size: 1.4vw;
     padding-right: 3vw;
     text-align: right;
