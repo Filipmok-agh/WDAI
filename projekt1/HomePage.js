@@ -36,7 +36,7 @@ const tab = [
     },
     {
         imgSrc: "img/płoć-main.jpg",
-        linkHref: "fishes/płoc.html",
+        linkHref: "fishes/ploc.html",
         description: "Poznaj: płoć"
     },
     {
@@ -56,7 +56,7 @@ const tab = [
     },
     {
         imgSrc: "img/wegorz-main.jpg",
-        linkHref: "fishes/wgorz.html",
+        linkHref: "fishes/wegorz.html",
         description: "Poznaj: węgorza"
     }
 ];
