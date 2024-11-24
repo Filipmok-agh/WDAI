@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="api.js" defer></script>
+</head>
+<body>
+    <div id="main">
+        <label for="wysz"></label>
+        <input type="text" name="wysz" id="" placeholder="wyszukiwanie">
+        <select name="wybor" id="wybor">
+            <option value="org">oryginalna</option>
+            <option value="ros">rosnąco</option>
+            <option value="mal">malejaco</option>
+            
+        </select>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>Zdjęcie</th>
+                <th>Tytuł</th>
+                <th>Opis</th>
+            </tr>
+        </thead>
+        <tbody id="table">
+        </tbody>
+    </table>
+</body>
+<style>
+    #main
+    {
+        text-align: center;
+    }
+    table
+    {
+        width: 100%;
+    }
+    th, td
+    {
+        border: 1px solid;
+        text-align: center;
+    }
+</style>

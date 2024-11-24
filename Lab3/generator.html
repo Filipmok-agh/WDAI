@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="generator.js" defer></script>
+</head>
+<body>
+    <div>
+        <label for="min">Minimalna długość hasła</label>
+        <input type="number" name="min" id="min">
+    </div>
+    <div>
+        <label for="max">Maksymalna długość hasła</label>
+        <input type="number" name="max" id="max">
+    </div>
+    <div>
+        <label for="wielkie">Czy hasło ma zawierać wielkie litery?</label>
+        <input type="checkbox" name="wielkie" id="wielkie">
+    </div>
+    <div>
+        <label for="znaki">Czy hasło ma zawierać znaki specjalne? </label>
+        <input type="checkbox" name="znaki" id="znaki">
+    <div>
+    </div>
+    <div>
+        <button id="button">Wygeneruj hasło</button>
+    </div>
+
+</body>
+<style>
+    body
+    {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        font-size: 23px;
+    }
+</style>

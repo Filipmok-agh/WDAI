@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt</title>
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <header>
+        <div class="title">
+            <h1>Świat Wędkarski</h1>
+        </div>
+        <div class="titleimg"><img src="img/Logo.png" class="szczupak" alt="&#128031;"></div>
+</header>
+<nav>
+    <div class="navbar">
+        <div ><a href="HomePage.html">&#127968;</a></div>
+        <div class="options">
+            <a>Ryby</a>
+            <ul class="list">
+                <li><a href="Fish-page.html">Słodkowodne</a></li>
+                <li><a href="Fish-page2.html">Morskie</a></li>
+            </ul>
+        </div>
+        <div><a href="Styles.html">Metody</a></div>
+        <div><a href="Galleries.html">Galeria</a></div>
+        <div class="options">
+            <a class="aha" href="Articles.html">Artykuły</a>
+        </div>
+        <div><a href="contact.html">Kontakt</a></div>
+    </div>
+</nav>
+    <h2>Kontakt</h2>
+    <div class="main">
+        <form class="form" id="contactForm">
+            <label for="email" class="email">E-Mail:</label>
+            <input type="text"  name="email" placeholder="Wprowadź E-mail" id="email"  required pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="podaj prawidłowy E-Mail">
+            <br><br>
+            <label for="temat">Temat wiadomości:</label>
+            <select id="temat" required name="temat">
+                <option value="">Wybierz temat</option>
+                <option value="opcja1">Praca</option>
+                <option value="opcja2">Skarga</option>
+                <option value="opcja3">Inne</option>
+            </select>
+            <br><br>
+            <label for="wiadomosc">Wiadomość:</label>
+            <textarea id="wiadomosc" required name="wiadomosc" placeholder="Wpisz wiadomość"></textarea>
+            <br><br>
+            <input type="submit" value="Wyślij">
+        </form>
+    </div>
+    <footer>
+        <hr>
+        <h4>Mokrzycki Filip</h4>
+    </footer>
+</body>
