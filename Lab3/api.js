@@ -1,3 +1,4 @@
+let produkty =[]
 function show()
 {
 fetch('https://dummyjson.com/products')
@@ -7,7 +8,8 @@ fetch('https://dummyjson.com/products')
     })
     .then(function(data) 
     {
-        main(data.products);
+        produkty = data.products
+        main(produkty);
     })
     .catch(function(error) 
     {
@@ -19,7 +21,7 @@ function main(products)
 {
     let parent = document.getElementById("table");
     let array = products.slice(0,30);
-
+    parent.innerHTML = '';
     for(let i=0;i<30;i++)
     {
         let el = array[i];
@@ -41,4 +43,24 @@ function main(products)
         parent.appendChild(row);
     }
 }
+
+function filtr() 
+{
+    let key = document.getElementById("wysz").value.toLowerCase();
+    let choice = document.getElementById("wybor").value;
+    let array = produkty.filter(produkt => produkt.title.toLowerCase().includes(key));
+    if (choice === "ros") 
+    {
+        array.sort((a, b) => a.title.localeCompare(b.title));
+    } 
+    else if (choice === "mal") 
+    {
+        array.sort((a, b) => b.title.localeCompare(a.title));
+    }
+
+    main(array);
+}
+
 show();
+document.getElementById("wysz").addEventListener("input",filtr);
+document.getElementById("wybor").addEventListener("change",filtr);
