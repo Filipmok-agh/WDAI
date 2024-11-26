@@ -19,31 +19,43 @@ let score = 0;
 let zombies = [];
 let gameOver = false;
 
-let currentFrame = 0; 
 let framesMax = 9;
+
+const cursorImage = new Image();
+cursorImage.src = 'aim.png';
+cursorImage.onload = () => {
+    const smallCanvas = document.createElement('canvas');
+    const smallCtx = smallCanvas.getContext('2d');
+    const targetSize = 64; 
+    smallCanvas.width = targetSize;
+    smallCanvas.height = targetSize;
+    smallCtx.drawImage(cursorImage, 0, 0, targetSize, targetSize);
+    canvas.style.cursor = `url(${smallCanvas.toDataURL()}), auto`;
+};
 
 class Zombie 
 {
     constructor() 
     {
-      this.x = canvas.width-1000;
-      this.y = 1000+ Math.random() * (100);; 
-      this.width = 1000 ;
+      this.x = canvas.width;
+      this.width = 200 + Math.random() * 700 ;
       this.height = this.width * 1.5;
-      this.speed = 20 + Math.random() * 30; 
+      this.y = canvas.height - this.height - Math.random() * 2000;
+      this.speed = 20 + Math.random() * 50; 
       this.hit = false; 
       this.frameWidth = 200; 
-      this.frameHeight = 312; 
+      this.frameHeight = 312;
+      this.currentFrame = 0; 
       
     }
     animation()
     {
-        if (currentFrame >= framesMax) 
+        if (this.currentFrame >= framesMax) 
         {
-            currentFrame = -1; 
+            this.currentFrame = -1; 
         }
-        currentFrame +=1;
-        const cutX = currentFrame * this.frameWidth; 
+        this.currentFrame +=1;
+        const cutX = this.currentFrame * this.frameWidth; 
         c.drawImage(zombieImg, cutX, 0, this.frameWidth, this.frameHeight, this.x, this.y, this.width, this.height);
     }
     update()
@@ -52,7 +64,7 @@ class Zombie
     }
 }
 
-function drawboard()
+function drawHUD()
 {
     for(let i=0; i<3;i++)
     {
@@ -69,15 +81,72 @@ function drawboard()
     c.font = "300px Arial";
     c.fillText(`${score}`, canvas.width - 1000, 400);
 }
-function gameLoop()
+
+function gameEnd()
 {
-    c.clearRect(0, 0, canvas.width, canvas.height);
-    drawboard();
-    zombie.animation();
-    zombie.update();
-    requestAnimationFrame(gameLoop);
+    zombies=[];
+    gameOver=true;
+    clearInterval(zombiespawn);
+    popup();
 }
 
-let zombie = new Zombie();
-drawboard();
+function shot(event) 
+{
+    if(gameOver===false)
+    {
+
+    
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = 75 + event.clientX - rect.left;
+    const mouseY = 75 + event.clientY - rect.top;
+    for (let i = 0; i < zombies.length; i++) 
+    {
+        const zombie = zombies[i];
+        if (mouseX >= zombie.x && mouseX <= zombie.x + zombie.width && mouseY >= zombie.y &&mouseY <= zombie.y + zombie.height) 
+        {
+            zombies.splice(i,1);
+            score+=20;
+            return;
+        }
+    }
+    if(score>=5)
+    {
+        score-=5;
+    }
+    }
+}
+function gameLoop()
+{
+
+    c.clearRect(0, 0, canvas.width, canvas.height);
+    drawHUD();
+    if(lives===0)
+        {
+            gameEnd();
+        }
+    if(gameOver===false)
+    {
+        for(let i = 0;i<zombies.length;i++)
+        {
+            if(zombies[i].x<=0)
+                {
+                     lives-=1;
+                    zombies.splice(i,1);
+                }
+                else
+                {
+                    zombies[i].animation();
+                    zombies[i].update();
+                }
+            }
+        requestAnimationFrame(gameLoop);
+    }
+        
+}
+zombiespawn = setInterval(() => {
+    let zombie = new Zombie();
+    zombies.push(zombie);
+}, 1000);
+canvas.addEventListener('click', shot);
+drawHUD();
 requestAnimationFrame(gameLoop);

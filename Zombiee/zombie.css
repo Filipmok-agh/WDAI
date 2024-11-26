@@ -7,9 +7,11 @@ body {
     height: 100vh;
     background: #000;
     background-image: url(board-bg.jpg);
+    background-size: cover;
+    background-attachment: fixed;
   }
   
   canvas {
     display: block;
+    cursor: url('aim.png') 16 16,auto;
   }
-  
