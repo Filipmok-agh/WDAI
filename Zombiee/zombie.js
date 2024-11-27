@@ -3,24 +3,25 @@ const c = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-let aim = new Image();
+const aim = new Image();
 aim.src = 'aim.png';
-let boardBG = new Image();
+const boardBG = new Image();
 boardBG.src = 'board-bg.jpg';
-let emptyHeart = new Image();
+const emptyHeart = new Image();
 emptyHeart.src = 'empty_heart.png';
-let fullHeart = new Image();
+const fullHeart = new Image();
 fullHeart.src = 'full_heart.png';
-let zombieImg = new Image();
+const zombieImg = new Image();
 zombieImg.src = 'walkingdead.png';
+const sadMusic = new Audio("sad-music.mp3");
+
 
 let lives = 3;
 let score = 0;
 let zombies = [];
+let zombiespawn;
 let gameOver = false;
-
 let framesMax = 9;
-
 const cursorImage = new Image();
 cursorImage.src = 'aim.png';
 cursorImage.onload = () => {
@@ -64,6 +65,7 @@ class Zombie
     }
 }
 
+
 function drawHUD()
 {
     for(let i=0; i<3;i++)
@@ -84,21 +86,53 @@ function drawHUD()
 
 function gameEnd()
 {
+    sadMusic.currentTime = 0;
     zombies=[];
     gameOver=true;
     clearInterval(zombiespawn);
     popup();
+    sadMusic.play();
+    canvas.addEventListener('click',button);
+
+}
+function button(event)
+{
+    if(gameOver ===true)
+    {
+        const buttonWidth = 1500;
+        const buttonHeight = 500;
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = event.clientX - rect.left - 250;
+        const mouseY = event.clientY - rect.top -128;
+        const buttonX = (canvas.width-buttonWidth)/2; 
+        const buttonY = (canvas.height -buttonHeight)/ 2;          
+
+        if (mouseX >= buttonX&&mouseX <= buttonX  + buttonWidth &&mouseY >= buttonY &&mouseY <= buttonY + buttonHeight)
+        {
+            gameStart();
+        }
+    }
+
+}
+function popup()
+{
+    
+    const buttonWidth = 1500;
+    const buttonHeight = 500;
+    c.fillStyle= 'green';
+    c.fillRect((canvas.width-buttonWidth/2)/2,(canvas.height)/2,buttonWidth,buttonHeight);
+    c.fillStyle = "white";
+    c.font = "300px Arial";
+    c.fillText(`Zagraj ponownie`, (canvas.width-buttonWidth/2)/2,(canvas.height)/1.7,buttonWidth,buttonHeight);
 }
 
 function shot(event) 
 {
     if(gameOver===false)
     {
-
-    
     const rect = canvas.getBoundingClientRect();
-    const mouseX = 75 + event.clientX - rect.left;
-    const mouseY = 75 + event.clientY - rect.top;
+    const mouseX = event.clientX - rect.left-64;
+    const mouseY = 128 + event.clientY - rect.top;
     for (let i = 0; i < zombies.length; i++) 
     {
         const zombie = zombies[i];
@@ -120,6 +154,7 @@ function gameLoop()
 
     c.clearRect(0, 0, canvas.width, canvas.height);
     drawHUD();
+    
     if(lives===0)
         {
             gameEnd();
@@ -140,13 +175,22 @@ function gameLoop()
                 }
             }
         requestAnimationFrame(gameLoop);
-    }
-        
+    }  
 }
-zombiespawn = setInterval(() => {
-    let zombie = new Zombie();
-    zombies.push(zombie);
-}, 1000);
-canvas.addEventListener('click', shot);
-drawHUD();
-requestAnimationFrame(gameLoop);
+function gameStart()
+{
+    sadMusic.pause();
+    lives = 3;
+    score = 0;
+    zombies = [];
+    gameOver = false;
+    zombiespawn = setInterval
+    (() => 
+        {
+            let zombie = new Zombie();
+            zombies.push(zombie);
+        }, 1000);
+    requestAnimationFrame(gameLoop);
+    canvas.addEventListener('click',shot);
+}
+gameStart();
