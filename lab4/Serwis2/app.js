@@ -19,7 +19,7 @@ const db = connect();
 
 // db.run(`INSERT INTO orders(userid,bookid,quantity) VALUES (?,?,?)`,[1,2,3])
 // db.run(`INSERT INTO orders(userid,bookid,quantity) VALUES (?,?,?)`,[1,4,2])
-// db.run(`INSERT INTO orders(userid,bookid,quantity) VALUES (?,?,?)`,[2,7,1])
+// db.run(`INSERT INTO orders(userid,bookid,quantity) VALUES (?,?,?)`,[2,7,1]) 
 app.get('/api/orders/:id', (req, res) => {
     const id = req.params.id; 
     db.all("SELECT id, bookid, quantity FROM orders WHERE userid = ?", [id], (err, rows) => {
@@ -54,6 +54,40 @@ app.post('/api/orders',(req,res) =>
                 })
             }
         })
+})
+
+app.delete('/api/orders/:id',(req,res) =>
+    {
+        const id = req.params.id;
+        const db= connect()
+        db.run("DELETE FROM orders WHERE id=?",[id],(err) =>
+        {
+            if(err) 
+            {
+                return res.status(200).json({err: err.message})
+            }
+            res.status(200).json({message: "git"})
+        })
+    })
+
+app.patch('/api/orders/:id',(req,res)=>
+{
+    const orderid=req.params.id;
+    const {bookid,quantity} = req.body;
+    if(!orderid || !bookid || !quantity)
+    {
+        res.status(400).json({messsage: "Wymagane,orderid,bookid oraz quantity"})
+    }
+    const db = connect();
+    db.run(`UPDATE orders SET bookid = ? , quantity =? WHERE id=?`,[bookid,quantity,orderid],(err)=>
+    {
+        if(err)
+        {
+            return res.status(500).json({error: err.message});
+        }
+        res.status(200).json({message: "git"})
+        
+    })
 })
 
 const PORT = 3000;
